@@ -28,6 +28,49 @@ producto[0].precio=5000;
 producto[0].existencias=100;
 
 producto[1].codigo=2;
+producto[1].nombre="FRIJOL";
+producto[1].precio=4000;
+producto[1].existencias=50;
+
+producto[2].codigo=3;
+producto[2].nombre="LECHE";
+producto[2].precio=2600;
+producto[2].existencias=25;
+
+producto[3].codigo=4;
+producto[3].nombre="PANELA";
+producto[3].precio=5200;
+producto[3].existencias=70;
+
+producto[4].codigo=5;
+producto[4].nombre="AZUCAR";
+producto[4].precio=3000;
+producto[4].existencias=120;
+
+producto[5].codigo=6;
+producto[5].nombre="SAL";
+producto[5].precio=1000;
+producto[5].existencias=60;
+
+producto[6].codigo=7;
+producto[6].nombre="ACEITE";
+producto[6].precio=6000;
+producto[6].existencias=30;
+
+producto[7].codigo=8;
+producto[7].nombre="LENTEJA";
+producto[7].precio=3200;
+producto[7].existencias=80;
+
+producto[8].codigo=9;
+producto[8].nombre="MANTEQUILLA";
+producto[8].precio=3500;
+producto[8].existencias=18;
+
+producto[9].codigo=10;
+producto[9].nombre="SALCHICHA";
+producto[9].precio=2500;
+producto[9].existencias=25;
 /*ASI HASTA LOS 10 PRODUCTOS*/
 	
 }
@@ -36,8 +79,8 @@ void mostrar_productos(producto producto[]){
 	//ASI MOSTRARÍAN TODOS LOS 30 PRODUCTOS EXISTENTES
 	cout<<"LOS PRODUCTOS EXISTENTES SON: "<<endl;
 	
-	for(int i=0; i<20; i++){
-		cout<<"-------------------------------------------------";
+	for(int i=0; i<29; i++){
+		cout<<"-------------------------------------------------\n";
 		cout<<"CODIGO: "<<producto[i].codigo<<endl;
 		cout<<"NOMBRE: "<<producto[i].nombre<<endl;
 		cout<<"PRECIO: "<<producto[i].precio<<endl;
@@ -59,6 +102,28 @@ void adicionar_productos(producto producto[]){
 			cout<<"PRECIO: "<<producto[i].precio<<endl;
 			cout<<"EXISTENCIAS: "<<producto[i].existencias<<endl;			}
 	*/
+	cout<<"LOS 	PRODUCTOS SON: "<<endl;
+	
+	for(int i=10; i<29; i++){
+		int adi;
+		cout<<"CODIGO: ";		
+		cin>>producto[i].codigo;
+		if(producto[i].codigo>0 && producto[i].codigo<=10){
+			cout<<"El codigo ingresado ya existe\n";
+			system("pause");
+			break;			
+		}
+		cout<<"NOMBRE: ";
+		cin>>producto[i].nombre;
+		cout<<"PRECIO: ";
+		cin>>producto[i].precio;
+		cout<<"EXISTENCIAS: ";
+		cin>>producto[i].existencias;
+		cout<<"Quiere Adicionar un nuevo producto?\n";
+		cout<<"Digite 1 para Si o 0 para No\n";
+		cin>>adi;
+		if(adi == 0){break;
+		}		}
 }
 
 
@@ -86,6 +151,7 @@ void menu(producto producto[]){
 			*/
 			int op=0;
 			do{
+				system("cls");
 				cout<<"-----------Gestion De Productos---------------"<<endl;
 				cout<<"1.Crear Producto "<<endl;
 				cout<<"2.Modificar Producto"<<endl;
@@ -101,7 +167,7 @@ void menu(producto producto[]){
 			
 				    case 1:
 				    		cout<<"Crear Producto "<<endl;
-				    	
+				    		adicionar_productos(producto);
 							 
 				    break;
 				    case 2: 
@@ -109,14 +175,15 @@ void menu(producto producto[]){
 				    break;
 				    case 3: 
 				    		cout<<"Listar Todos los Productos "<<endl;
+				    		mostrar_productos(producto);
 				    break;
 				    case 4: 
 				    		cout<<"Volver a Menu Principal "<<endl;
-				    		menu(producto);
+				    		
 				    break;			
 				}
 			
-			}while(op>0 && op<=4);
+			}while(op>0 && op<=3);
 
 			
 			
@@ -152,7 +219,7 @@ void menu(producto producto[]){
 		
            
           	
-     	system("pause");
+     	//system("pause");
         break;
       }//CASE1
         
@@ -169,7 +236,7 @@ void menu(producto producto[]){
         
     }//SWITCH
     
-    break;
+    //break;
   }while(opc>0 && opc<6);
 return;	
 }
