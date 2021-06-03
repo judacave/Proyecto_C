@@ -92,20 +92,27 @@ void mostrar_productos(producto producto[]){
 
 void adicionar_productos(producto producto[]){
 	/*AQUI SE DEBEN CREAR LOS PRODUCTOS DESDE EL 10 HASTA EL 29 UNO POR UNO, NO NECESARIAMENTE TODOS*/
-	/*
-	cout<<"LOS 	PRODUCTOS SON: "<<endl;
 	
+	cout<<"LOS 10 PRIMEROS PRODUCTOS SON: "<<endl;
+	int np;
 	for(int i=0; i<10; i++){
-		
+		cout<<"-------------------------------------------------\n";
 		cout<<"CODIGO: "<<producto[i].codigo<<endl;
 		cout<<"NOMBRE: "<<producto[i].nombre<<endl;
-			cout<<"PRECIO: "<<producto[i].precio<<endl;
-			cout<<"EXISTENCIAS: "<<producto[i].existencias<<endl;			}
-	*/
-	cout<<"LOS 	PRODUCTOS SON: "<<endl;
+		cout<<"PRECIO: "<<producto[i].precio<<endl;
+		cout<<"EXISTENCIAS: "<<producto[i].existencias<<endl;
+		cout<<"-------------------------------------------------\n";			}
+	cout<<endl;
+	
 	
 	for(int i=10; i<29; i++){
 		int adi;
+		cout<<"Quiere Adicionar un nuevo producto?\n";
+		cout<<"Digite 1 para Si o 0 para No\n";
+		cin>>np;
+		if(np == 0){break;
+		}
+		cout<<"Agregue un Nuevo Producto: "<<endl;
 		cout<<"CODIGO: ";		
 		cin>>producto[i].codigo;
 		if(producto[i].codigo>0 && producto[i].codigo<=10){
@@ -145,10 +152,7 @@ void menu(producto producto[]){
       case 1:{
         	system("cls");//LIMPIAR PANTALLA
 			cout<<"1. GESTION DE PRODUCTOS "<<endl;
-			/*DEBE IR OTRO DO WHILE Y OTRO SWITCH 
-			CON LAS OPCIONES CREAR PRODUCTO, MODIFICAR PRODUCTO, LISTAR TODOS LOS PRODUCTOS Y VOLVER AL MENU PRINCIPAL
-			DENTRO DE CREAR PRODUCTO PUEDEN USAR LA FUNCION ADICIONAR PRODUCTO
-			*/
+
 			int op=0;
 			do{
 				system("cls");
@@ -176,6 +180,7 @@ void menu(producto producto[]){
 				    case 3: 
 				    		cout<<"Listar Todos los Productos "<<endl;
 				    		mostrar_productos(producto);
+				    system("pause");
 				    break;
 				    case 4: 
 				    		cout<<"Volver a Menu Principal "<<endl;
@@ -183,39 +188,7 @@ void menu(producto producto[]){
 				    break;			
 				}
 			
-			}while(op>0 && op<=3);
-
-			
-			
-			
-			/*
-			producto producto[20];
-			producto producto[10];
-	
-	cout<<"DIGITE LOS PRODUCTOS: "<<endl;
-	for(int i=0; i<20; i++){
-	    cout<<"CODIGO DEL PRODUCTO:"<<(i + 1);
-		cin>>producto[i].codigo;
-		cout<<"NOMBRE DEL PRODUCTO:"<<(i + 1);
-		cin>>producto[i].nombre;
-		cout<<"EL PRECIO DEL PRODUCTO: "<<(i + 1);
-		cin>>producto[i].precio;
-	    cout<<"EXISTENCIA DEL PRODUCTO: "<<(i + 1);
-		cin>>producto[i].existencias;
-	  }
-	for(int i=0; i<10; i++){
-		cout<<"CODIGO DEL PRODUCTO:"<<(i + 1);
-		cin>>producto[i].codigo;
-		cout<<"NOMBRE DEL PRODUCTO:"<<(i + 1);
-		cin>>producto[i].nombre;
-		cout<<"EL PRECIO DEL PRODUCTO: "<<(i + 1);
-		cin>>producto[i].precio;
-	    cout<<"EXISTENCIA DEL PRODUCTO: "<<(i + 1);
-		cin>>producto[i].existencias;
-	  }
-	
-			*/
-         
+			}while(op>0 && op<=3);   
 		
            
           	
