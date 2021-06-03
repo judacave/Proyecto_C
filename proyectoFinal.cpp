@@ -1,5 +1,9 @@
 #include <bits/stdc++.h>
-
+#include <iostream>
+#include <conio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <cstring>
 using namespace std;
 
 
@@ -9,6 +13,69 @@ struct producto{
 	int existencias;
 	long long codigo;
 };
+bool login(){
+ string nombre;
+ char pass[10];
+ char realpass[10]="admin123";
+ int i;
+ int v=0;
+ 
+ for(i=1; i<4; i++){
+ system("cls");
+ cout << endl;
+ cout << "        BIENVENIDO AL SISTEMA DE LOGIN " << endl;
+ cout << "___________________________________________" << endl;
+ cout << endl;
+ cout << "Por favor ingrese su informacion de usuario" << endl;
+ cout << endl;
+ cout << "¿Nombre de usuario?" << endl;
+ cin >> nombre;
+ if(nombre == "admin"){
+  cout << "Nombre de usuario correcto, por favor ingrese su contrasena:" << endl;
+  for(int i=0; i<10; i++){
+  	v=getch();
+  	if((v >= 'a')&&(v <='z')||(v >= 'A')&&(v <= 'Z')||(v >= '0')&&(v <= '9')){  	
+	  	pass[i]=v;
+		cout<<"*";}
+	if(v == '\r'){
+		pass[i]=0;
+		break;
+	}
+  }
+    
+  if(strcmp(pass,realpass)==0){
+   cout << endl;
+   cout << "Contrasena correcta, bienvenido, sera redirigido a la aplicacion" << endl;
+   return true;
+   system("pause>null");
+   exit(0);
+ }
+  else
+   if(strcmp(pass,realpass)!=0){
+    cout << "Contrasena incorrecta, por favor ingrese un usuario y contrasena valida" << endl;
+    system("pause>null");
+   }
+ }
+ else
+  if(nombre != "admin"){
+    cout << "Nombre de usuario incorrecto, por favor ingrese su nombre de usuario nuevamente" << endl;
+  system("pause>null");
+ }
+
+ if(i > 0){
+    cout << endl;
+    cout << "Ha realizado " << i << "/3 intentos" << endl;
+    cout << endl;
+    system("pause>null");
+   }
+ if(i == 3){
+   cout << endl;
+   cout << "Ha realizado 3 intentos, por seguridad el programa se cerrara..." << endl;
+   system("pause>null");
+   exit(0);
+  }
+ }
+}
 
 void cargarProdInic(producto producto[]){
 //SE BLANQUEAN TODOS LOS 30 PRODUCTOS
@@ -93,7 +160,7 @@ void mostrar_productos(producto producto[]){
 void adicionar_productos(producto producto[]){
 	/*AQUI SE DEBEN CREAR LOS PRODUCTOS DESDE EL 10 HASTA EL 29 UNO POR UNO, NO NECESARIAMENTE TODOS*/
 	
-	cout<<"LOS 10 PRIMEROS PRODUCTOS SON: "<<endl;
+	/*cout<<"LOS 10 PRIMEROS PRODUCTOS SON: "<<endl;
 	int np;
 	for(int i=0; i<10; i++){
 		cout<<"-------------------------------------------------\n";
@@ -102,9 +169,9 @@ void adicionar_productos(producto producto[]){
 		cout<<"PRECIO: "<<producto[i].precio<<endl;
 		cout<<"EXISTENCIAS: "<<producto[i].existencias<<endl;
 		cout<<"-------------------------------------------------\n";			}
-	cout<<endl;
+	cout<<endl;*/
 	
-	
+	int np;
 	for(int i=10; i<29; i++){
 		int adi;
 		cout<<"Quiere Adicionar un nuevo producto?\n";
@@ -171,8 +238,7 @@ void menu(producto producto[]){
 			
 				    case 1:
 				    		cout<<"Crear Producto "<<endl;
-				    		adicionar_productos(producto);
-							 
+				    		adicionar_productos(producto);							 
 				    break;
 				    case 2: 
 				    		cout<<"Modificar Producto "<<endl;
@@ -218,9 +284,13 @@ return;
 
 int main(){
  //AQUI ESTAN LOS 30 PRODUCTOS
+  system("color 90");
   producto producto[30];
   cargarProdInic(producto); 
-  menu(producto); 
+  bool bandera=login(); 	
+  if(bandera=true){
+  	menu(producto);
+  }
   
   system("pause");
   return 0;
