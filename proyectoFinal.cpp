@@ -153,21 +153,18 @@ EN LAS 10 PRIMERAS POSICIONES DEL ARREGLO
     /*ASI HASTA LOS 10 PRODUCTOS*/
 }
 
-void mostrar_productos(producto producto[])
-{
-    //ASI MOSTRARÍAN TODOS LOS 30 PRODUCTOS EXISTENTES
-    cout << "LOS PRODUCTOS EXISTENTES SON: " << endl;
-
-    for (int i = 0; i < 29; i++)
-    {
-        cout << "-------------------------------------------------\n";
-        cout << "CODIGO: " << producto[i].codigo << endl;
-        cout << "NOMBRE: " << producto[i].nombre << endl;
-        cout << "PRECIO: " << producto[i].precio << endl;
-        cout << "EXISTENCIAS: " << producto[i].existencias << endl;
-        cout << "-------------------------------------------------";
-    }
-    return;
+void mostrar_productos(producto producto[], int posicion){
+	//ASI MOSTRAR?AN TODOS LOS 30 PRODUCTOS EXISTENTES
+	cout<<"LOS PRODUCTOS EXISTENTES SON: "<<endl;
+	for(int i=0; i<posicion; i++){
+		cout<<"-------------------------------------------------"<<endl;
+		cout<<"CODIGO: "<<producto[i].codigo<<endl;
+		cout<<"NOMBRE: "<<producto[i].nombre<<endl;
+		cout<<"PRECIO: "<<producto[i].precio<<endl;
+		cout<<"EXISTENCIAS: "<<producto[i].existencias<<endl;
+		cout<<"-------------------------------------------------"<<endl;
+	}
+return;
 }
 
 int adicionar_productos(producto producto[], int posicion){
@@ -219,6 +216,7 @@ int adicionar_productos(producto producto[], int posicion){
 	
 	return posicion;
 }
+
 void menu(producto producto[]){
 	int opc=0;
 	int posicion=10;
