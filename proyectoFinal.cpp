@@ -30,7 +30,7 @@ bool login()
         cout << endl;
         cout << "Por favor ingrese su informacion de usuario" << endl;
         cout << endl;
-        cout << "øNombre de usuario?" << endl;
+        cout << "¬øNombre de usuario?" << endl;
         cin >> nombre;
         if (nombre == "admin")
         {
@@ -155,7 +155,7 @@ EN LAS 10 PRIMERAS POSICIONES DEL ARREGLO
 
 void mostrar_productos(producto producto[])
 {
-    //ASI MOSTRARÕAN TODOS LOS 30 PRODUCTOS EXISTENTES
+    //ASI MOSTRAR√çAN TODOS LOS 30 PRODUCTOS EXISTENTES
     cout << "LOS PRODUCTOS EXISTENTES SON: " << endl;
 
     for (int i = 0; i < 29; i++)
@@ -170,136 +170,131 @@ void mostrar_productos(producto producto[])
     return;
 }
 
-void adicionar_productos(producto producto[])
-{
-    /*AQUI SE DEBEN CREAR LOS PRODUCTOS DESDE EL 10 HASTA EL 29 UNO POR UNO, NO NECESARIAMENTE TODOS*/
+int adicionar_productos(producto producto[], int posicion){
+	/*AQUI SE DEBEN CREAR LOS PRODUCTOS DESDE EL 10 HASTA EL 29 UNO POR UNO, NO NECESARIAMENTE TODOS*/
 
-    /*cout<<"LOS 10 PRIMEROS PRODUCTOS SON: "<<endl;
 	int np;
-	for(int i=0; i<10; i++){
-		cout<<"-------------------------------------------------\n";
-		cout<<"CODIGO: "<<producto[i].codigo<<endl;
-		cout<<"NOMBRE: "<<producto[i].nombre<<endl;
-		cout<<"PRECIO: "<<producto[i].precio<<endl;
-		cout<<"EXISTENCIAS: "<<producto[i].existencias<<endl;
-		cout<<"-------------------------------------------------\n";			}
-	cout<<endl;*/
+	int cod;
+	int i;
+	bool bandera;
+	do{
+		if (posicion < 30){
+			system("cls");//LIMPIAR PANTALLA
+			cout<<"---------------Crear producto---------------"<<endl;
+			cout<<"Agregue un Nuevo Producto: "<<endl;
+			cout<<"CODIGO: ";cin>>cod;
+			if (cod !=0){
+				for (i=0; i<posicion; i++){
+				if(producto[i].codigo == cod){
+					bandera = true;
+				}
+				}
+				if (bandera == true){
+					cout<<"El codigo ingresado ya existe\n";
+					bandera=false;
+					system("pause");
+				}
+				else{
+					producto[posicion].codigo = cod;
+					cout<<"NOMBRE: ";cin>>producto[posicion].nombre;
+					cout<<"PRECIO: ";cin>>producto[posicion].precio;
+					cout<<"EXISTENCIAS: ";cin>>producto[posicion].existencias;
+					posicion++;
+				}
+			}
+			else{
+				cout<<"Es un codigo no permitido"<<endl;
+			}
+			cout<<"Si desea crear otro producto digite (1), de lo contrario digite (0)"<<endl;
+			cin>>np;
+		}
+		else{
+			system("cls");//LIMPIAR PANTALLA
+			cout<<"---------------Crear producto---------------"<<endl;
+			cout<<"No hay mas stock disponible"<<endl;
+			np = 0;
+		}
 
-    int np;
-    for (int i = 10; i < 29; i++)
-    {
-        int adi;
-        cout << "Quiere Adicionar un nuevo producto?\n";
-        cout << "Digite 1 para Si o 0 para No\n";
-        cin >> np;
-        if (np == 0)
-        {
-            break;
-        }
-        cout << "Agregue un Nuevo Producto: " << endl;
-        cout << "CODIGO: ";
-        cin >> producto[i].codigo;
-        if (producto[i].codigo > 0 && producto[i].codigo <= 10)
-        {
-            cout << "El codigo ingresado ya existe\n";
-            system("pause");
-            break;
-        }
-        cout << "NOMBRE: ";
-        cin >> producto[i].nombre;
-        cout << "PRECIO: ";
-        cin >> producto[i].precio;
-        cout << "EXISTENCIAS: ";
-        cin >> producto[i].existencias;
-        cout << "Quiere Adicionar un nuevo producto?\n";
-        cout << "Digite 1 para Si o 0 para No\n";
-        cin >> adi;
-        if (adi == 0)
-        {
-            break;
-        }
-    }
+	}while (np == 1);
+	
+	return posicion;
 }
+void menu(producto producto[]){
+	int opc=0;
+	int posicion=10;
+	do{
+		system("cls");
+		cout<<"-------------- PROYECTO FINAL --------------"<<endl;
+		cout<<"-\t1. GESTION DE PRODUCTOS \t   -"<<endl;
+		cout<<"-\t2. TIENDA \t\t\t   -"<<endl;
+		cout<<"-\t3. SALIR \t\t\t   -"<<endl;
+		cout<<"--------------------------------------------"<<endl;
 
-void menu(producto producto[])
-{
-    int opc = 0;
-    do
-    {
-        system("cls");
-        cout << "PROYECTO FINAL --- " << endl;
-        cout << "1. GESTION DE PRODUCTOS" << endl;
-        cout << "2. TIENDA" << endl;
-        cout << "3. SALIR" << endl;
+		cout<<"\tDIGITE LA OPCION ---> ";
+		cin>>opc;
 
-        cout << "DIGITE LA OPCION--->";
-        cin >> opc;
+		switch(opc){
+			case 1:{
+				system("cls");//LIMPIAR PANTALLA
+				int op=0;
+				/*Creamos el otro do while con las opciones de crear producto
+				modificar producto, listar todos los productos y volver a menu principal*/
+				
+				do{
+					system("cls");
+					cout<<"---------------Gestion De Productos---------------"<<endl;
+					cout<<"-\t1.Crear Producto \t\t\t -"<<endl;
+					cout<<"-\t2.Modificar Producto \t\t\t -"<<endl;
+					cout<<"-\t3.Listar Todos los Productos \t\t -"<<endl;
+					cout<<"-\t4.Volver al Menu Principal \t\t -"<<endl;
+					cout<<"--------------------------------------------------"<<endl;
+					cout<<"\tDigite una opcion ---> ";
+					
+					cin>>op; //ingresamos la opcion que queremos realizar.
+					
+					switch(op){
+						case 1:
+							posicion=adicionar_productos(producto, posicion);
+							system("pause");
+							break;
+					    case 2:
+					    	system("cls");//LIMPIAR PANTALLA
+							cout<<"---------------Modificar producto---------------"<<endl;
+							system("pause");
+							break;
+					    case 3:
+					    	system("cls");//LIMPIAR PANTALLA
+							cout<<"---------------Listar todos los productos---------------"<<endl;
+							mostrar_productos(producto, posicion);
+							system("pause");
+							break;
+					    default:
+					    	if (op != 4){
+						    	system("cls");//LIMPIAR PANTALLA
+								cout<<"Valor invalido, por favor intentelo de nuevo"<<endl;
+								cout<<"Volveras al menu de gestion"<<endl;
+								system("pause");
+							}
+							break;
+					}
+				}while(op > 0 && op !=4);
+				break;
+			}//End case 1-1
 
-        switch (opc)
-        {
-        case 1:
-        {
-            system("cls"); //LIMPIAR PANTALLA
-            cout << "1. GESTION DE PRODUCTOS " << endl;
+			case 2:{
+				system("cls");//LIMPIAR PANTALLA
+				cout<<"2. REEMPLAZO "<<endl;
 
-            int op = 0;
-            do
-            {
-                system("cls");
-                cout << "-----------Gestion De Productos---------------" << endl;
-                cout << "1.Crear Producto " << endl;
-                cout << "2.Modificar Producto" << endl;
-                cout << "3.Listar Todos los Productos " << endl;
-                cout << "4.Volver al Menu Principal " << endl;
-                cout << "Digite una opcion" << endl;
+			}//End case 1-2
 
-                cin >> op;
+			case 3:{
+				cout<<"DECIDIO SALIR DEL PROGRAMA"<<endl;
+				break;
+			}//End case 1-3
+		}//End-switch1
 
-                switch (op)
-                {
-
-                case 1:
-                    cout << "Crear Producto " << endl;
-                    adicionar_productos(producto);
-                    break;
-                case 2:
-                    cout << "Modificar Producto " << endl;
-                    break;
-                case 3:
-                    cout << "Listar Todos los Productos " << endl;
-                    mostrar_productos(producto);
-                    system("pause");
-                    break;
-                case 4:
-                    cout << "Volver a Menu Principal " << endl;
-
-                    break;
-                }
-
-            } while (op > 0 && op <= 3);
-
-            //system("pause");
-            break;
-        } //CASE1
-
-        case 2:
-        {
-            system("cls"); //LIMPIAR PANTALLA
-            cout << "2. REEMPLAZO " << endl;
-
-        } //CASE 2
-
-        case 3:
-        {
-            cout << "DECIDIO SALIR DEL PROGRAMA" << endl;
-            break;
-        } //CASE 6
-
-        } //SWITCH
-
-        //break;
-    } while (opc > 0 && opc < 6);
-    return;
+	}while(opc >= 0 && opc !=3);
+	return;
 }
 
 int main()
